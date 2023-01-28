@@ -1,0 +1,2 @@
+cd tests
+pytest -s
