@@ -42,7 +42,7 @@ def app():
                                 help='Get it on https://beta.openai.com/')
 
     engine.gpt3_parameters["engine"] = st.sidebar.text_input("GPT3 Engine", "text-davinci-003")
-    engine.gpt3_parameters["temperature"] = st.sidebar.slider("GPT3 Temperature", value=0.01, min_value=0.0, max_value=1.0, step=0.1)
+    engine.gpt3_parameters["temperature"] = st.sidebar.slider("GPT3 Temperature", value=0.1, min_value=0.0, max_value=1.0, step=0.1)
     
 
     selected_categories = st.sidebar.multiselect('Possible categories to consider when adding facts', 

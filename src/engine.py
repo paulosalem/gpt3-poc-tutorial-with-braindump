@@ -11,7 +11,7 @@ class BraindumpEngine:
     it provides the capability both to insert facts into the database and to query the database.
     """
 
-    def __init__(self, 
+    def __init__(self, api_key = os.getenv("OPENAI_API_KEY"),
                  database_file_path="./data/default_database.csv",
                  categories_file_path="./data/default_categories.csv",
                  gpt3_engine = "text-davinci-003", gpt3_temperature=0.1,
@@ -44,7 +44,7 @@ class BraindumpEngine:
             logging.info(f"Created categories {self._categories} in {self._categories_file_path}.")
 
 
-        openai.api_key = os.getenv("OPENAI_API_KEY")
+        openai.api_key = api_key
         self.gpt3_parameters = {"engine": gpt3_engine, "temperature": gpt3_temperature, 
                                 "max_tokens":200, "top_p":1.0, "frequency_penalty":0.0, 
                                 "presence_penalty":0.0, "stop":None}
@@ -288,15 +288,15 @@ Output:
 
         prompt = \
 f"""
-Extract the main entities (one per line) in the following sentence: "{query}"
+Extract the main entities (one per line, without bullets) in the following sentence: "{query}"
 """
         logging.info(f"GPT-3 Prompt: {prompt}")
         return prompt
 
-    def terms_augmentation_prompt(self, terms):
+    def terms_augmentation_prompt(self, term):
         prompt = \
 f"""
-List some synonyms to the following terms: "{terms}"
+List some synonyms for the following term: "{term}"
 Synonyms (one synonym per line):
 """
         logging.info(f"GPT-3 Prompt: {prompt}")
@@ -312,7 +312,7 @@ class BraindumpPostprocessor:
         """
         Extracts the lines from the result string.
         """
-        lines = [line for line in result.split('\n') if len(line) > 0]
+        lines = [line.strip(' -*') for line in result.split('\n') if len(line) > 0]
         return lines
 
     def string_to_tuples(self, s):
