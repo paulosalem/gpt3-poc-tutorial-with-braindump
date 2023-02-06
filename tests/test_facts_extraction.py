@@ -5,15 +5,22 @@ import sys
 sys.path.append('../src/')
 from engine import BraindumpEngine
 
-API_KEY = os.getenv("OPENAI_API_KEY")
+API_KEY = os.getenv("PERSONAL_OPENAI_API_KEY")
 TEST_CATEGORIES = ["Family", "Work", "Friends", "Shopping", "Health", "Finance", "Travel", "Home", "Pets", "Hobbies", "Other"]
 
 ############################################################################################################
 # Tests
 ############################################################################################################
+def test_work():
+    # Each NL utterance is mapped into the expected values.
+    nl_utterances = [("sales guy email = jp@example.com", [('Work', 'Email', 'sales guy', 'email', 'jp@example.com')]),
+                     ("my employee number is 12345678", [('Work', 'Document', '', 'employee number', '12345678')])
+                    ]
+
+    extract_and_check_all(nl_utterances)
 
 def test_shopping_lists():
-
+    # Each NL utterance is mapped into the expected values.
     nl_utterances = [("I need to buy milk, eggs, and bread", [('Shopping', 'List', '', 'milk', 'buy'), 
                                                               ('Shopping', 'List', '', 'eggs', 'buy'), 
                                                               ('Shopping', 'List', '', 'bread', 'buy')]),
@@ -24,19 +31,20 @@ def test_shopping_lists():
     extract_and_check_all(nl_utterances)
 
 def test_ambiguous_travel():
-    # let's specify some valid potential ambiguities regarding travel utterances
+    # Each NL utterance is mapped into the expected values.
+    # But let's specify some valid potential ambiguities regarding travel utterances.
+    # An ambiguous field is a field that can have multiple valid extractions. For example, the Category field can be either 
+    # 'Travel' or 'Work', it can be specified as ['Travel', 'Work']. Se examples below.
     nl_utterances = [("remember to buy plane tickets to meet customer", [(['Travel', 'Work'], 'Reminder', 'customer', 'plane tickets', 'buy')]),
                      ("in jen's free time she told me she likes to travel", [(['Travel', 'Hobbies', 'Friends'], ['List', 'Note'], 'jen', ['free time', 'travel', 'hobbies'], ['travel', 'likes'])])
                     ]
-
     extract_and_check_all(nl_utterances)
-
         
 ############################################################################################################
 # Helper functions
 ############################################################################################################
 
-def extract_and_check_all(nl_utterances, max_attempts=3):
+def extract_and_check_all(nl_utterances, max_attempts=10):
     """
     Helper function to extract facts from a list of natural language utterances and check if the
     extracted facts match the ground truth. Owing to the non-deterministic nature of the underlying

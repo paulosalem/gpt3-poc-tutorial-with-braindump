@@ -265,11 +265,14 @@ f"""
 Extract pieces of personal information, like phone numbers, email addresses, names, trivia, reminders, etc., as tuples with the following format: (Category, Type, People, Key, Value)
 Assume everything mentioned refers to the same thing. Constraints:
   - Allowed Categories: {', '.join(categories)}
-  - Allowed Types: "List", "Email", "Phone", "Address", "Reminder", "Note", "Doubt", "Wish", "Other"
-  - People contain the name or description of the people concerned, or is empty if irrelevant.
+  - Allowed Types: "List", "Email", "Phone", "Address", "Document", "Pendency", "Price", "Reminder", "Note", "Doubt", "Wish", "Other"
+  - People contain the name or description of the people or organizations concerned, or is empty if no person or organization is mentioned.
   
 Example input: "Mom's phone number is 555-555-5555"
 Example output: ("Family", "Phone", "mom", "mom's number", "555-555-5555")
+
+Example input: "email of the building administration = adm@example.com"
+Example output: ("Work", "Email", "building administration", "email", "adm@example.com")
 
 Example input: "Need to do: lab work, ultrasound, buy aspirin"
 Example output: 
