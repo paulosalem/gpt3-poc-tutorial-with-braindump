@@ -1,9 +1,10 @@
 # Braindump
-Braindump is a prototype application for taking notes and converting them to a database that can be more easily queried later. It was built as a demo to show how to leverage GPT-3 to build Natural Language Proofs-of-Concept, as described in [my Data Science @ Microsoft blog article](xxxxxxxxxxxxxxxx) **(UPCOMING)**.
+Braindump is a prototype application for taking notes and converting them to a database that can be more easily queried. Just type what is in your mind and the application properly classifies, slices, and stores it for later use. **It was built as a demo to show how to leverage GPT-3 to build applications starting with Proofs-of-Concept, as described in [my Data Science @ Microsoft tutorial, "Building GPT-3 applications — beyond the prompt"](https://medium.com/data-science-at-microsoft/building-gpt-3-applications-beyond-the-prompt-504140835560).** You can use it both to follow the tutorial and as a starting point for your
+own studies and applications (e.g., by reusing the utility functions and overal program structures in your own, different, problems).
 
 It is a simple Python application that leverages [Streamlit](https://streamlit.io/) to provide a web interface. To actually call the GPT-3 model, you need to have a working [OpenAI API](https://openai.com/api/) key. At the time of writing, once you create your account, you get some free credits that should be enought to follow the tutorial and get started with the application. The application should also work with the recently released [Azure OpenAI Service](https://azure.microsoft.com/en-us/products/cognitive-services/openai-service/) instead of the original OpenAI offer, though I have not yet tested it there.
 
-Besides the application itself, this repository includes the studies, in the form of Jupyter notebooks, that led to that.
+Besides the application itself, this repository includes the studies, in the form of Jupyter notebooks, that led to it.
 
 The UI for searching looks like this:
 ![Search facts tab](./docs/braindump-search-facts.png)
@@ -25,14 +26,14 @@ To run the studies:
 ## Project Structure
 
 The project is structured as follows:
-  - `notebooks/`: contains Jupyter notebooks used for prompt engineering.
-  - `src/`: contains the source code for the final application.
-  - `data/`: contains the data stored by the application.
-  - `tests/`: contains unit tests for the application.
-  - `docs/`: contains documentation and related assets.
+  - `notebooks/`: Jupyter notebooks used for prompt engineering.
+  - `src/`: source code for the final application.
+  - `data/`: data stored by the application.
+  - `tests/`: unit tests for the application.
+  - `docs/`: documentation and related assets.
 
 ## Approach
-The approach is presented in detail in [my Data Science @ Microsoft blog article](xxxxxxxxxxxxxxxx) **(UPCOMING)**. Nevertheless, let me highlight some key points here:
+The approach is presented in detail in [my Data Science @ Microsoft tutorial, "Building GPT-3 applications — beyond the prompt"](https://medium.com/data-science-at-microsoft/building-gpt-3-applications-beyond-the-prompt-504140835560). Nevertheless, let me highlight some key points here:
 
   - Large Language Models, notably GPT-3, offer a relatively easy and very flexible way to build some types of software. However, considerable additional Software Engineering aspects are required to actually build a robust and usable application.
   - Proofs-of-Concept (PoC) are great to explore the capabilities of new technologies and demonstrate value quickly and at low cost. They thus provides a way to secure further investents if waranted. Since the application of LLMs like GPT-3 remains a very new area, PoCs are a great way to explore the space and learn.
