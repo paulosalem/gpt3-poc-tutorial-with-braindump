@@ -16,12 +16,14 @@ To add facts, the UI is as follows, including an optional manual inspection of t
 
 To run the application:
 
-  1. Install the dependencies listed in `requirements.txt`. You can do this by running `pip install -r requirements.txt` from the root of the project. 
-  2. Obtain you need to have a working [OpenAI API](https://openai.com/api/) key and make it available as an environment variable called `OPENAI_API_KEY`.
-  3. Finally, launch the application with `run.sh` (on Linux) or `run.bat` (on Windows) from the root of the project.
+  1. To ensure dependencies are properly installed, you can first create a new environment just for this application using `conda create -n braindump_py38 python=3.8`
+  2. Activate the new environment using `conda activate braindump_py38`
+  3. Install the dependencies listed in `requirements.txt`. You can do this by running `pip install -r requirements.txt` from the root of the project. 
+  4. Obtain you need to have a working [OpenAI API](https://openai.com/api/) key and make it available as an environment variable called `OPENAI_API_KEY`.
+  5. Finally, launch the application with `run.sh` (on Linux) or `run.bat` (on Windows) from the root of the project.
 
 To run the studies:
-  1. Follow the steps 1 and 2 above.
+  1. Follow the steps above, except the last one.
   2. Open the desired Jupyter notebook under `notebooks/` with your favorite Jupyter client (personally, I use VS Code a lot for that).
 ## Project Structure
 
