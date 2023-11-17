@@ -2,7 +2,7 @@ import pytest
 import os
 
 import sys
-sys.path.append('../src/')
+sys.path.append('../../src/gpt-3')
 from engine import BraindumpEngine
 
 API_KEY = os.getenv("PERSONAL_OPENAI_API_KEY")

@@ -1,0 +1,1 @@
+streamlit run src\gpt-3\app.py
